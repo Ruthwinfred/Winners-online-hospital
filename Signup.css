@@ -109,7 +109,7 @@ table {
     overflow: hidden;
   }
   #mac {
-      direction: right;
+      direction: left;
       word-spacing: 10px;
       text-shadow: 4px 4px 8px lime;
       color: white;

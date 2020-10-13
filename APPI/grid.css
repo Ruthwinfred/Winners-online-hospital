@@ -1,0 +1,130 @@
+body {
+  background-color: green;
+}
+
+* {
+  box-sizing: border-box;
+}
+#mac{
+  word-spacing: 10px;
+color:white;
+font-size: 30px;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+  border: 1px solid silver;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.top-nav {
+  background-color: green;
+  padding: 4px 28px;
+}
+
+.top-nav li {
+  display: inline;
+  padding-left: 15px;
+}
+
+.col-1 {
+  width: 8.33%
+}
+
+.col-2 {
+  width: 16.66%
+}
+
+.col-3 {
+  width: 25%
+}
+
+.col-4 {
+  width: 33.33%
+}
+
+.col-5 {
+  width: 41.66%
+}
+
+.col-6 {
+  width: 50%
+}
+
+.col-7 {
+  width: 58.33%
+}
+
+.col-8 {
+  width: 66.66%
+}
+
+.col-9 {
+  width: 75%
+}
+
+.col-10 {
+  width: 83.33%
+}
+
+.col-11 {
+  width: 91.66%
+}
+
+.col-12 {
+  width: 100%
+}
+
+.home-para p {
+  color: white;
+  font-size: 1.5vw;
+}
+
+#h1 {
+  font-size: 20px;
+  color: white;
+  text-align: center;
+}
+
+#h {
+  font-size: 15px;
+  color: white;
+  text-align: center;
+}
+
+#h3 {
+  color: white;
+  font-size: 12px;
+}
+/*media queries that make text and images stack on smaller screen*/
+
+@media only screen and (max-width: 768px) {
+  [class*="col-"] {
+      width: 100%;
+  }
+  body{
+    background-color: greenyellow;
+  }
+  .home-para p {
+      color: green;
+  }
+  #h3 {
+      color: green;
+  }
+  #h1 {
+      color: green;
+  }
+  #h {
+      color: green;
+  }
+  #mac{
+    color: green;
+    font-size: 12px;
+  }
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE Html>
 <html>
 <head>
-  <title>Contact us-The Winners online hospital</title>
+  <title>Consultation form-The Winners online hospital</title>
   <link rel="stylesheet" type="text/css" href="Styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -33,38 +33,92 @@
   <button class="btn"><a href="index.php">Home</a></button>
 </header>
 <!-- Header ends here -->
-<div class="row home-para">
-  <img src="img/tpe.jpg" img id="img5">
-  <div class="centre">Call, text or email us any time.</div>
+
+<div class="container">  
+  <form id="contact" action="" method="post">
+    <h3>The Winners online hospital</h3>  
+    <h4>Doctor consultation Form</h4>
+    <fieldset>
+      <input placeholder="Patient name" type="text"  name="Name" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Age" type="text" name="Age" required>
+    </fieldset>
+    <fieldset>
+      Gender:&nbsp;&nbsp;<input type="radio" name="Gender" value="male" required> Male&nbsp;&nbsp;
+      <input type="radio" name="Gender" value="female" required> Female&nbsp;&nbsp;
+      <input type="radio" name="Gender" value="other" required> Other
+    </fieldset>
+    <fieldset>
+      <textarea placeholder="State your problem here...." name="Problem" required></textarea>
+    </fieldset>
+    <fieldset>
+      <textarea placeholder="Briefly explain your health history...."  name="HealthHistory" required></textarea>
+    </fieldset>
+    <fieldset>
+      <textarea placeholder="List any habits or addictions here...."  name="Habits" required></textarea>
+    </fieldset>
+     <fieldset>
+      <textarea placeholder="Have any other issue?...."  name="AOB" required></textarea>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Appointment notice via...(Provide phone number or email)" type="text"  name="Feedback" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Appointment via...(Video,Audio or Text?)" type="text"  name="Appointment"  required autofocus>
+    </fieldset>
+   <fieldset>
+      <input placeholder="Date and time" type="datetime-local"  name="Date"  required autofocus>
+    </fieldset>
+    <fieldset>
+      <button type="submit" id="contact-submit" name="sub" value="Submit">Send request</button>
+    </fieldset>
+  </form>
 </div>
+<?php
+	if (isset($_POST['sub'])) {
+		$nm = $_POST['Name'];
+ $age = $_POST['Age'];
+ $gnd = $_POST['Gender'];
+ $prob = $_POST['Problem'];
+ $hab = $_POST['Habits'];
+ $aob = $_POST['AOB'];
+ $fb = $_POST['Feedback'];
+ $app = $_POST['Appointment'];
+ $dt = $_POST['Date'];
 
 
 
-<!-- Section starts here -->
-<div class="row home-para">
- <h1 id="hy"><center> Our addresses:</center></h1>
-</div>
 
-<div class="row home-para">
-<div class="col-3">
-<h id="hy"><center> Physical</center></h>
-<h id="hz">The Winners Hospital-Kenyatta Road-Parklands, <br>Open days:24/7<br>Phone:+254706044980, +254706048874</h>
-</div>
-<div class="col-3">
-<h id="hy"><center> Email</center></h>
-<h id="hz">reuwinn@yahoo.com<br>rruwinn@yahoo.com<br>thywinners@gmail.com</h>
-</div>
-<div class="col-3">
-<h id="hy"><center>Social media</center></h>
-<a href="https://www.facebook.com/ruth.winfred.35"><img src="img/fb.png" id="img1"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://twitter.com/Truthwinners"><img src="img/twit.jpg" id="img1"></a><br><br>
-<img src="img/wect.png" id="img1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://studio.youtube.com/channel/UC5zI55p27zYcJ8YyRfZ_sUA/editing/images"><img src="img/ytb.png" id="img1"></a><br><br>
-<img src="img/inst.jpg" id="img1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"><img src="img/link.jpg" id="img1"></a>
-</div>
-</div>
-<!-- Section ends here -->
+ //db credentials
+$servername = 'localhost';
+$dbusername = "root";
+$dbpassword = "";
+$dbname = "register";
+
+//connecting to the database
+$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+
+//checking errors
+if ($conn->connect_error) {
+	die("Connection error".$conn->connect_error);
+}
+
+//insert values into db
+	$sql = "INSERT INTO patients(Name,Age,Gender,Problem,HealthHistory,Habits,AOB,Feedback,Appointment)
+   VALUES('$nm','$age','$gnd','$prob','$hab' ,'$aob' ,'$fb' ,'$app' ,'$dt')";
+
+	//execute the query
+	if ($conn->query($sql) === TRUE) {
+        echo  "<p style='color:rgba(39, 89, 4, 0.755)'><b>Dear  ".$nm. ",  your request has been submitted <br>successfully. You will receive an appointment <br>notice shortly through "
+        .$fb." .</b></p>";;
+	}else{
+		echo "Failled to register";
+	}
+
+	$conn->close();
+	}
+?>
 
 <!-- Footer starts here -->
 <footer>

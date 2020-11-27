@@ -1,13 +1,13 @@
 <!DOCTYPE Html>
 <html>
 <head>
-  <title>Contact us-The Winners online hospital</title>
+  <title>The Winners online hospital</title>
   <link rel="stylesheet" type="text/css" href="Styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-   <!-- Top nav starts here -->
+  <!-- Top nav starts here -->
 <nav class="top-nav">
 <i class="fa fa-phone" id="fa" aria-hidden="true">&nbsp;&nbsp;+254706048874</i>
 <i class="fa fa-phone" id="fa" aria-hidden="true">&nbsp;&nbsp;+254706044980</i>
@@ -21,7 +21,7 @@
 </nav>
 <!-- Top nav ends here -->
 
-  <!-- Header starts here -->
+<!-- Header starts here -->
 <header id="head">
   <img src="img/wns.png" id="img2">
   <button class="btn"><a href="Login.php">Dashboard</a></button>
@@ -33,38 +33,55 @@
   <button class="btn"><a href="index.php">Home</a></button>
 </header>
 <!-- Header ends here -->
-<div class="row home-para">
-  <img src="img/tpe.jpg" img id="img5">
-  <div class="centre">Call, text or email us any time.</div>
+
+<!-- Partner section begin here -->
+<div class="row">
+        <div class="col-6">
+        <div class="container">  
+  <form id="contact" action="" method="post">
+    <h3>The Winners online hospital</h3>  
+    <h4>Admin gatepass</h4>
+    <fieldset>
+      <input placeholder="Username" type="text"  name="username" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Password" type="password" name="password" required>
+    </fieldset>
+    <fieldset>
+      <button type="submit" id="contact-submit" name="sub" value="Submit">Let me in</button>
+    </fieldset>
+  </form>
+</div>
+</div>
 </div>
 
+<?php 
+require('db.php');
+session_start();
+// If form submitted, insert values into the database.
+if (isset($_POST['username'])){
+        // removes backslashes
+ $username = stripslashes($_REQUEST['username']);
+        //escapes special characters in a string
+ $username = mysqli_real_escape_string($conn,$username);
+ $password = stripslashes($_REQUEST['password']);
+ $password = mysqli_real_escape_string($conn,$password);
+ //Checking is user existing in the database or not
+        $query = "SELECT * FROM `users` WHERE username='$username'
+and password='".md5($password)."'";
+ $result = mysqli_query($conn,$query) or die(mysql_error());
+ $rows = mysqli_num_rows($result);
+        if($rows==1){
+     $_SESSION['username'] = $username;
+            // Redirect user to index.php
+     header("Location: Dashboard.php");
+         }else{
+ echo "<h3>Username/password is incorrect.Try again or <a href='Register.php'>register</a>";
+ }
+    }else{
+?>
+ <!-- Partner section end here -->
 
-
-<!-- Section starts here -->
-<div class="row home-para">
- <h1 id="hy"><center> Our addresses:</center></h1>
-</div>
-
-<div class="row home-para">
-<div class="col-3">
-<h id="hy"><center> Physical</center></h>
-<h id="hz">The Winners Hospital-Kenyatta Road-Parklands, <br>Open days:24/7<br>Phone:+254706044980, +254706048874</h>
-</div>
-<div class="col-3">
-<h id="hy"><center> Email</center></h>
-<h id="hz">reuwinn@yahoo.com<br>rruwinn@yahoo.com<br>thywinners@gmail.com</h>
-</div>
-<div class="col-3">
-<h id="hy"><center>Social media</center></h>
-<a href="https://www.facebook.com/ruth.winfred.35"><img src="img/fb.png" id="img1"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://twitter.com/Truthwinners"><img src="img/twit.jpg" id="img1"></a><br><br>
-<img src="img/wect.png" id="img1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://studio.youtube.com/channel/UC5zI55p27zYcJ8YyRfZ_sUA/editing/images"><img src="img/ytb.png" id="img1"></a><br><br>
-<img src="img/inst.jpg" id="img1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"><img src="img/link.jpg" id="img1"></a>
-</div>
-</div>
-<!-- Section ends here -->
 
 <!-- Footer starts here -->
 <footer>
@@ -99,6 +116,6 @@
   <b><p> &#169; Copyright 2020. reuwinnWinnieWinners.</p>
 </div>
   <!-- Copyright ends here  -->
-
+  <?php } ?>
 </body>
 </html>

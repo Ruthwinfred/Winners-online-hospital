@@ -32,7 +32,7 @@ if ($results->num_rows > 0) {
           <th>Feedback</th>
 		  <th>Appointment</th>
 		  <th>Date</th>
-		  <thcolspan='2'>Action</th>
+		  <th>Action</th> 
 		  </tr>";
 	while ($row = $results->fetch_assoc()) {
 	echo "<tr>
@@ -47,8 +47,7 @@ if ($results->num_rows > 0) {
           <td>".$row['Feedback']."</td>
 		  <td>".$row['Appointment']."</td>
 		  <td>".$row['Date']."</td>
-		  <td><a href='edit.php?id=$row[id]'>Edit</a></td>
-		  <td><a href='delete.php?id=$row[id]'>Delete</a></td>
+		  <td><a href='C-Comment.php?id=$row[id]'>Doctor's comment</a></td>
 		  </tr>";
 	}
 	echo "</table>";
